@@ -1,0 +1,68 @@
+[
+  {
+    "sceneId": "intro",
+    "text": "당신은 외로운 노인입니다. 오늘 하루를 어떻게 시작할까요?",
+    "choices": [
+      {
+        "text": "산책을 나간다",
+        "nextScene": "walk",
+        "effects": { "health": 5 }
+      },
+      {
+        "text": "TV를 본다",
+        "nextScene": "tv",
+        "effects": { "health": -2 }
+      }
+    ]
+  },
+  {
+    "sceneId": "walk",
+    "text": "밖은 맑고 햇살이 따뜻합니다. 그러나 발이 조금 아픕니다.",
+    "choices": [
+      {
+        "text": "의자에 앉는다",
+        "nextScene": "rest",
+        "effects": { "health": 2, "moodStatus": "평범" }
+      },
+      {
+        "text": "더 걷는다",
+        "nextScene": "injury",
+        "effects": { "health": -100 }
+      }
+    ]
+  },
+  {
+    "sceneId": "tv",
+    "text": "재미있는 드라마가 시작되었지만, 조금 외롭습니다.",
+    "choices": [
+      {
+        "text": "지인에게 전화한다",
+        "nextScene": "callFriend",
+        "effects": { "health": 2 }
+      },
+      {
+        "text": "잠들어 버린다",
+        "nextScene": "sleep",
+        "effects": { "health": 5 }
+      }
+    ]
+  },
+  {
+    "sceneId": "injury",
+    "text": "계속 걷다 발을 헛디뎌 심하게 다쳤습니다. 병원에 갈 수 없어 점점 상태가 악화됩니다.",
+    "choices": [
+      {
+        "text": "모든 것이 끝났다...",
+        "nextScene": "ending_dead",
+        "effects": { "health": -100 }
+      }
+    ]
+  },
+  {
+    "sceneId": "ending_dead",
+    "text": "당신은 결국 의식을 잃고 쓰러졌습니다. 아무도 오지 않았습니다.",
+    "choices": []
+  }
+]
+
+  
