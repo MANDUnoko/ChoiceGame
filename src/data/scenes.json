@@ -1,68 +1,266 @@
 [
   {
     "sceneId": "intro",
-    "text": "당신은 외로운 노인입니다. 오늘 하루를 어떻게 시작할까요?",
+    "text": "당신은 길을 걷다 구석에 거대한 덩어리가 있는 것을 발견했습니다.",
     "choices": [
       {
-        "text": "산책을 나간다",
-        "nextScene": "walk",
-        "effects": { "health": 5 }
+        "text": "덩어리에게 다가간다",
+        "nextScene": "observe",
+        "effects": { "setConditionRandom": true }
       },
       {
-        "text": "TV를 본다",
-        "nextScene": "tv",
-        "effects": { "health": -2 }
+        "text": "지나친다",
+        "nextScene": "ending_ignore"
       }
     ]
   },
-  {
-    "sceneId": "walk",
-    "text": "밖은 맑고 햇살이 따뜻합니다. 그러나 발이 조금 아픕니다.",
-    "choices": [
-      {
-        "text": "의자에 앉는다",
-        "nextScene": "rest",
-        "effects": { "health": 2, "moodStatus": "평범" }
-      },
-      {
-        "text": "더 걷는다",
-        "nextScene": "injury",
-        "effects": { "health": -100 }
-      }
-    ]
-  },
-  {
-    "sceneId": "tv",
-    "text": "재미있는 드라마가 시작되었지만, 조금 외롭습니다.",
-    "choices": [
-      {
-        "text": "지인에게 전화한다",
-        "nextScene": "callFriend",
-        "effects": { "health": 2 }
-      },
-      {
-        "text": "잠들어 버린다",
-        "nextScene": "sleep",
-        "effects": { "health": 5 }
-      }
-    ]
-  },
-  {
-    "sceneId": "injury",
-    "text": "계속 걷다 발을 헛디뎌 심하게 다쳤습니다. 병원에 갈 수 없어 점점 상태가 악화됩니다.",
-    "choices": [
-      {
-        "text": "모든 것이 끝났다...",
-        "nextScene": "ending_dead",
-        "effects": { "health": -100 }
-      }
-    ]
-  },
-  {
-    "sceneId": "ending_dead",
-    "text": "당신은 결국 의식을 잃고 쓰러졌습니다. 아무도 오지 않았습니다.",
-    "choices": []
-  }
-]
 
+  {
+    "sceneId": "observe",
+    "text": "당신이 다가가자, 그것이 쓰러진 노인이라는 것을 알게 됩니다.",
+    "choices": [
+      { "text": "노인의 상태를 확인합니다.", "nextScene": "assess_status" }
+    ]
+  },
+
+  {
+    "sceneId": "assess_status",
+    "text": "노인의 상태를 살펴봅니다...",
+    "choices": [
+      { "text": "응급 처치를 시작한다", "nextScene": "first_aid_1" }
+    ]
+  },
+
+  {
+    "sceneId": "first_aid_1",
+    "text": "무엇을 할까요?",
+    "choices": [
+      {
+        "text": "주변 사람에게 자동 제세동기를 가져오도록 시킨다",
+        "nextScene": "conditional_aed"
+      },
+      {
+        "text": "조금 더 관찰한다",
+        "nextScene": "death_misstep"
+      },
+      {
+        "text": "행동을 취한다",
+        "nextScene": "first_aid_2"
+      }
+    ]
+  },
+
+  {
+    "sceneId": "first_aid_2",
+    "text": "무엇을 할까요?",
+    "choices": [
+      {
+        "text": "노인의 기력이 너무 없어보인다, 빠르게 에너지를 보충할 수 있게 주머니에 있던 사탕을 먹인다.",
+        "nextScene": "conditional_sugar"
+      },
+      {
+        "text": "노인의 입이 너무 말라보인다, 무언가를 좀 마시게 해야겠다.",
+        "nextScene": "conditional_sugarhigh"
+      },
+      {
+        "text": "눕혀서 노인이 쉴 수 있게 해주고, 계속 상태를 구두로 확인한다.",
+        "nextScene": "death_misstep"
+      }
+    ]
+  },
+
+  {
+    "sceneId": "conditional_sugarhigh",
+    "text": "당신의 가방에는 이온음료와 오렌지 주스 그리고 생수가 있습니다.",
+    "choices": [
+      {
+        "text": "노인이 상태가 나빠지지는 않았는지 의식을 재확인한다.",
+        "nextScene": "next_sugarhigh"
+      },
+      {
+        "text": "위급 상황이므로 셋 중에 하나를 빠르게 섭취시킨다.",
+        "nextScene": "death_misstep"
+      }
+    ]
+  },
+
+  {
+    "sceneId": "next_sugarhigh",
+    "text": "노인은 아직 의식이 조금 있습니다. 어떤 걸 마시게 할까요?",
+    "choices": [
+      {
+        "text": "이온음료",
+        "nextScene": "next_sugarhigh"
+      },
+      {
+        "text": "오렌지 주스",
+        "nextScene": "death_misstep"
+      },
+      {
+        "text": "생수",
+        "nextScene": "ending_rescue_sugarhigh"
+      }
+    ]
+  },
+
+  {
+    "sceneId": "conditional_sugar",
+    "text": "노인이 사탕을 잘 삼키지 못하는 것 같습니다. 약간의 경련도 있는 듯합니다. 어떻게 할까요?",
+    "choices": [
+      {
+        "text": "노인의 의식을 다시 확인해본다.",
+        "nextScene": "next_sugar"
+      },
+      {
+        "text": "가방에 있던 물을 노인의 입에 흘려보내며, 물과 사탕을 함께 삼키게 한다.",
+        "nextScene": "death_misstep"
+      }
+    ]
+  },
+
+  {
+    "sceneId": "next_sugar",
+    "text": "노인은 완전히 의식을 잃은 듯 합니다.",
+    "choices": [
+      {
+        "text": "입 안의 사탕을 빼고 노인의 곁을 지킨다.",
+        "nextScene": "ending_rescue_sugar"
+      },
+      {
+        "text": "사탕을 입 안에 다시 밀어 넣어 녹이게 시도한다.",
+        "nextScene": "death_misstep"
+      }
+    ]
+  },
+  
+  {
+    "sceneId": "conditional_aed",
+    "text": "한 명이 제세동기를 구하러 가는 모습을 보았습니다. 이제 무엇을 할까요?",
+    "choices": [
+      {
+        "text": "가슴 압박을 시작한다",
+        "nextScene": "startCPR"
+      },
+      {
+        "text": "입에 손가락을 넣어 기도를 확보한다",
+        "nextScene": "death_misstep"
+      },
+      {
+        "text": "노인을 일으켜 세운다",
+        "nextScene": "death_misstep"
+      }
+    ]
+  },
+
+  {
+    "sceneId": "startCPR",
+    "text": "당신은 압박을 하려 합니다... 어디에 손을 둘까요?",
+    "choices": [
+      {
+        "text": "양쪽 젖꼭지 사이의 중앙",
+        "nextScene": "first_aid_depth"
+      },
+      {
+        "text": "명치 부근",
+        "nextScene": "death_misstep"
+      },
+      {
+        "text": "왼쪽 가슴",
+        "nextScene": "death_misstep"
+      }
+    ]
+  },
+
+  {
+    "sceneId": "first_aid_depth",
+    "text": "흉부 압박을 시작합니다. 어느 정도 깊이로 눌러야 할까요?",
+    "choices": [
+      {
+        "text": "힘드니까 약 5~6cm 깊이로 누른다",
+        "nextScene": "first_aid_speed"
+      },
+      {
+        "text": "갈비뼈가 부러질 수도 있으니 3cm정도의 깊이로 누른다",
+        "nextScene": "death_misstep"
+      },
+      {
+        "text": "온몸으로 혈액을 보낼 수 있도록 8cm 이상 깊게 누른다",
+        "nextScene": "death_misstep"
+      }
+    ]
+  },
+
+  {
+    "sceneId": "first_aid_speed",
+    "text": "압박 속도를 어떻게 조절해야 할까요?",
+    "choices": [
+      {
+        "text": "분당 100~120회 속도로 일정하게 누른다",
+        "nextScene": "ending_rescue"
+      },
+      {
+        "text": "빠를수록 좋다. 분당 150회 이상으로 빠르게 누른다",
+        "nextScene": "death_misstep"
+      },
+      {
+        "text": "분당 60~70회, 리듬을 느끼며 부드럽게 누른다",
+        "nextScene": "death_misstep"
+      }
+    ]
+  },
+  
+  {
+    "sceneId": "ending_ignore",
+    "text": "당신은 그냥 지나쳤고, 며칠 뒤 그 자리에서 한 노인이 길거리에서 숨졌다는 소식을 듣게 됩니다.",
+    "choices": []
+  },
+
+  {
+    "sceneId": "death_misstep",
+    "text": "뭔가 잘못되었습니다... 노인은 급격히 상태가 안좋아지더니 이제 아무런 변화가 없습니다.",
+    "choices": [
+      {
+        "text": "BAD ENDDING",
+        "nextScene": "intro",
+        "effects": { "setConditionRandom": true }
+      }
+    ]
+  },
+
+  {
+    "sceneId": "ending_rescue",
+    "text": "열심히 압박을 하다보니 구급대가 도착했습니다. 당신은 인계 후 갈 길을 갑니다.",
+    "choices": [
+      {
+        "text": "HAPPY ENDING",
+        "nextScene": "intro",
+        "effects": { "setConditionRandom": true }
+      }
+    ]
+  },
+
+  {
+    "sceneId": "ending_rescue_sugar",
+    "text": "잠시 후 구급대가 도착했습니다. 당신은 인계 후 갈 길을 갑니다.",
+    "choices": [
+      {
+        "text": "HAPPY ENDING",
+        "nextScene": "intro",
+        "effects": { "setConditionRandom": true }
+      }
+    ]
+  },
+
+  {
+    "sceneId": "ending_rescue_sugarhigh",
+    "text": "노인에게 물을 마시게 한 뒤 잠시 후 구급대가 도착했습니다. 당신은 인계 후 갈 길을 갑니다.",
+    "choices": [
+      {
+        "text": "HAPPY ENDING",
+        "nextScene": "intro",
+        "effects": { "setConditionRandom": true }
+      }
+    ]
+  } 
+]
   
