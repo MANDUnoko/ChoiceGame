@@ -61,7 +61,7 @@ export default function GameScreen() {
           {currentScene.choices.map((choice, index) => (
             <button
               key={index}
-              onClick={() => handleChoice(choice.nextScene, choice.)}
+              onClick={() => handleChoice(choice.nextScene, choice.effects)}
               className="w-full py-2 bg-gray-100 text-black rounded hover:bg-gray-200 transition"
             >
               {choice.text}
