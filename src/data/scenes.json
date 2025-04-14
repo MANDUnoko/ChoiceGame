@@ -104,7 +104,7 @@
     "choices": [
       {
         "text": "이온음료",
-        "nextScene": "next_sugarhigh"
+        "nextScene": "death_misstep"
       },
       {
         "text": "오렌지 주스",

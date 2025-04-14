@@ -71,4 +71,4 @@ export default function GameScreen() {
       </div>
     </div>
   )
-}  effects
+}  
