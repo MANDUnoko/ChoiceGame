@@ -1,14 +1,35 @@
+// App.tsx
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useGame } from './context/GameContext'
 import GameScreen from './containers/GameScreen'
-import './App.css'
+import StartScreen from './containers/StartScreen'
 
 function App() {
+  const { state, dispatch } = useGame()
+
+const handleStart = () => {
+  dispatch({
+    type: 'CHOOSE_OPTION',
+    payload: {
+      nextSceneId: 'intro',
+      effects: { setConditionRandom: false },
+    }
+  })
+}
+
+
   return (
-    <GameScreen />
+    <>
+      {state.currentSceneId === 'start' ? (
+        <StartScreen onStart={handleStart} />
+      ) : (
+        <GameScreen />
+      )}
+    </>
   )
 }
 
 export default App
+
+
 

@@ -2,6 +2,8 @@
   {
     "sceneId": "intro",
     "text": "당신은 길을 걷다 구석에 거대한 덩어리가 있는 것을 발견했습니다.",
+    "image": "images/street.png",
+    "imageSize": { "width": 400, "height": 400 },
     "choices": [
       {
         "text": "덩어리에게 다가간다",
@@ -17,6 +19,8 @@
 
   {
     "sceneId": "observe",
+    "image": "images/observe.png",
+    "imageSize": { "width": 400, "height": 220 },
     "text": "당신이 다가가자, 그것이 쓰러진 노인이라는 것을 알게 됩니다.",
     "choices": [
       { "text": "노인의 상태를 확인합니다.", "nextScene": "assess_status" }
@@ -26,6 +30,8 @@
   {
     "sceneId": "assess_status",
     "text": "노인의 상태를 살펴봅니다...",
+    "image": "images/observe.png",
+    "imageSize": { "width": 400, "height": 220 },
     "choices": [
       { "text": "응급 처치를 시작한다", "nextScene": "first_aid_1" }
     ]
@@ -34,6 +40,8 @@
   {
     "sceneId": "first_aid_1",
     "text": "무엇을 할까요?",
+    "image": "images/choice.png",
+    "imageSize": { "width": 300, "height": 300 },
     "choices": [
       {
         "text": "주변 사람에게 자동 제세동기를 가져오도록 시킨다",
@@ -53,6 +61,8 @@
   {
     "sceneId": "first_aid_2",
     "text": "무엇을 할까요?",
+    "image": "images/choice.png",
+    "imageSize": { "width": 300, "height": 300 },
     "choices": [
       {
         "text": "노인의 기력이 너무 없어보인다, 빠르게 에너지를 보충할 수 있게 주머니에 있던 사탕을 먹인다.",
@@ -71,6 +81,8 @@
 
   {
     "sceneId": "conditional_sugarhigh",
+    "image": "images/bag.png",
+    "imageSize": { "width": 300, "height": 300 },
     "text": "당신의 가방에는 이온음료와 오렌지 주스 그리고 생수가 있습니다.",
     "choices": [
       {
@@ -86,6 +98,8 @@
 
   {
     "sceneId": "next_sugarhigh",
+    "image": "images/bag.png",
+    "imageSize": { "width": 300, "height": 300 },
     "text": "노인은 아직 의식이 조금 있습니다. 어떤 걸 마시게 할까요?",
     "choices": [
       {
@@ -105,7 +119,9 @@
 
   {
     "sceneId": "conditional_sugar",
-    "text": "노인이 사탕을 잘 삼키지 못하는 것 같습니다. 약간의 경련도 있는 듯합니다. 어떻게 할까요?",
+    "image": "images/seizure.png",
+    "imageSize": { "width": 300, "height": 300 },
+    "text": "노인이 사탕을 잘 삼키지 못하는 것 같습니다. 어떻게 할까요?",
     "choices": [
       {
         "text": "노인의 의식을 다시 확인해본다.",
@@ -120,6 +136,8 @@
 
   {
     "sceneId": "next_sugar",
+    "image": "images/normal.png",
+    "imageSize": { "width": 300, "height": 300 },
     "text": "노인은 완전히 의식을 잃은 듯 합니다.",
     "choices": [
       {
@@ -135,6 +153,8 @@
   
   {
     "sceneId": "conditional_aed",
+    "image": "images/run.png",
+    "imageSize": { "width": 300, "height": 300 },
     "text": "한 명이 제세동기를 구하러 가는 모습을 보았습니다. 이제 무엇을 할까요?",
     "choices": [
       {
@@ -154,6 +174,8 @@
 
   {
     "sceneId": "startCPR",
+    "image": "images/supine.png",
+    "imageSize": { "width": 300, "height": 300 },
     "text": "당신은 압박을 하려 합니다... 어디에 손을 둘까요?",
     "choices": [
       {
@@ -173,6 +195,8 @@
 
   {
     "sceneId": "first_aid_depth",
+    "image": "images/supine.png",
+    "imageSize": { "width": 300, "height": 300 },
     "text": "흉부 압박을 시작합니다. 어느 정도 깊이로 눌러야 할까요?",
     "choices": [
       {
@@ -192,6 +216,8 @@
 
   {
     "sceneId": "first_aid_speed",
+    "image": "images/supine.png",
+    "imageSize": { "width": 300, "height": 300 },
     "text": "압박 속도를 어떻게 조절해야 할까요?",
     "choices": [
       {
@@ -212,16 +238,26 @@
   {
     "sceneId": "ending_ignore",
     "text": "당신은 그냥 지나쳤고, 며칠 뒤 그 자리에서 한 노인이 길거리에서 숨졌다는 소식을 듣게 됩니다.",
-    "choices": []
+    "image": "images/flower.png",
+    "imageSize": { "width": 300, "height": 300 },
+    "choices": [
+      {
+        "text": "BAD ENDDING",
+        "nextScene": "start",
+        "effects": { "setConditionRandom": true }
+      }
+    ]
   },
 
   {
     "sceneId": "death_misstep",
     "text": "뭔가 잘못되었습니다... 노인은 급격히 상태가 안좋아지더니 이제 아무런 변화가 없습니다.",
+    "image": "images/flower.png",
+    "imageSize": { "width": 300, "height": 300 },
     "choices": [
       {
         "text": "BAD ENDDING",
-        "nextScene": "intro",
+        "nextScene": "start",
         "effects": { "setConditionRandom": true }
       }
     ]
@@ -230,10 +266,12 @@
   {
     "sceneId": "ending_rescue",
     "text": "열심히 압박을 하다보니 구급대가 도착했습니다. 당신은 인계 후 갈 길을 갑니다.",
+    "image": "images/rescue.png",
+    "imageSize": { "width": 300, "height": 300 },
     "choices": [
       {
         "text": "HAPPY ENDING",
-        "nextScene": "intro",
+        "nextScene": "start",
         "effects": { "setConditionRandom": true }
       }
     ]
@@ -242,10 +280,12 @@
   {
     "sceneId": "ending_rescue_sugar",
     "text": "잠시 후 구급대가 도착했습니다. 당신은 인계 후 갈 길을 갑니다.",
+    "image": "images/rescue.png",
+    "imageSize": { "width": 300, "height": 300 },
     "choices": [
       {
         "text": "HAPPY ENDING",
-        "nextScene": "intro",
+        "nextScene": "start",
         "effects": { "setConditionRandom": true }
       }
     ]
@@ -254,10 +294,12 @@
   {
     "sceneId": "ending_rescue_sugarhigh",
     "text": "노인에게 물을 마시게 한 뒤 잠시 후 구급대가 도착했습니다. 당신은 인계 후 갈 길을 갑니다.",
+    "image": "images/rescue.png",
+    "imageSize": { "width": 300, "height": 300 },
     "choices": [
       {
         "text": "HAPPY ENDING",
-        "nextScene": "intro",
+        "nextScene": "start",
         "effects": { "setConditionRandom": true }
       }
     ]

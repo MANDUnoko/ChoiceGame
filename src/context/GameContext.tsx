@@ -19,7 +19,7 @@ interface GameAction {
 }
 
 const initialState: GameState = {
-  currentSceneId: 'intro',
+  currentSceneId: 'start',
   condition: null
 }
 
@@ -43,7 +43,7 @@ function reducer(state: GameState, action: GameAction): GameState {
       // 조건 기반 분기 처리
       if (actualNextScene === 'conditional_sugar') {
         if (nextCondition === 'hypoglycemia') {
-          actualNextScene = 'first_aid_3'
+          actualNextScene = 'conditional_sugar'
         } else {
           actualNextScene = 'death_misstep'
         }
@@ -59,7 +59,7 @@ function reducer(state: GameState, action: GameAction): GameState {
 
       if (actualNextScene === 'conditional_aed') {
         if (nextCondition === 'cardiac_arrest') {
-          actualNextScene = 'first_aid_2'
+          actualNextScene = 'conditional_aed'
         } else {
           actualNextScene = 'death_misstep'
         }
@@ -73,12 +73,27 @@ function reducer(state: GameState, action: GameAction): GameState {
         }
       }
 
+      // 행동을 취한다 → first_aid_2 에서 cardiac_arrest일 경우 막기
+      if (
+        (actualNextScene === 'conditional_sugar' || actualNextScene === 'conditional_sugarhigh') &&
+        nextCondition === 'cardiac_arrest'
+      ) {
+        actualNextScene = 'death_misstep'
+      }      
+
+      // 고혈당일 때 사탕 → death, 저혈당일 때 물 → death 처리 추가
+      if (
+        (actualNextScene === 'conditional_sugar' && nextCondition === 'hyperglycemia') ||
+        (actualNextScene === 'conditional_sugarhigh' && nextCondition === 'hypoglycemia')
+      ) {
+        actualNextScene = 'death_misstep'
+      }
+
       return {
         currentSceneId: actualNextScene,
         condition: nextCondition
       }
     }
-
     default:
       return state
   }
@@ -115,6 +130,7 @@ export function getDynamicText(sceneId: string, baseText: string, condition: Con
       return baseText
   }
 }
+
 
 
 

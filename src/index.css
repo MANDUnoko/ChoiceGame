@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -43,14 +47,25 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+
+  /* 아래 간격 추가 */
+  margin-bottom: 0.5rem; /* = 16px */
 }
+
+button:last-child {
+  margin-bottom: 0; /* 마지막 버튼은 간격 제거 */
+}
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: none;
+  box-shadow: none;
 }
+
 
 @media (prefers-color-scheme: light) {
   :root {
@@ -65,7 +80,3 @@ button:focus-visible {
   }
 }
 
-/* ⬇Tailwind CSS 지시자는 맨 아래에! */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;

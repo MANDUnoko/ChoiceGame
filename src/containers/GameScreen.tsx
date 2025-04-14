@@ -31,27 +31,44 @@ export default function GameScreen() {
   }
 
   return (
-    <div className="max-w-md w-full mx-auto p-4">
-      {/* 텍스트 출력 */}
-      <p className="text-lg mb-6 text-gray-800 dark:text-gray-200 leading-relaxed">
-        {getDynamicText(state.currentSceneId, currentScene.text, state.condition)}
-      </p>
-
-      {/* 선택지 출력 */}
-      {currentScene.choices.length > 0 && (
-        <div className="space-y-3">
+    <div className="w-screen h-screen flex justify-center items-center bg-white">
+      <div className="max-w-md w-full p-4 flex flex-col items-center text-center">
+        
+        {/* 이미지 출력 */}
+        {currentScene.image && (
+          <img
+            src={`/${currentScene.image}`}
+            alt="scene illustration"
+            className="mb-4"
+            style={{
+              width: currentScene.imageSize?.width
+                ? `${currentScene.imageSize.width}px`
+                : 'auto',
+              height: currentScene.imageSize?.height
+                ? `${currentScene.imageSize.height}px`
+                : 'auto',
+            }}
+          />
+        )}
+  
+        {/* 텍스트 출력 */}
+        <p className="text-lg mb-6 text-gray-800 leading-relaxed">
+          {getDynamicText(state.currentSceneId, currentScene.text, state.condition)}
+        </p>
+  
+        {/* 선택지 출력 */}
+        <div className="flex flex-col items-center space-y-4 mt-6">
           {currentScene.choices.map((choice, index) => (
             <button
               key={index}
-              onClick={() => handleChoice(choice.nextScene, choice.effects)}
-              className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition"
+              onClick={() => handleChoice(choice.nextScene, choice.)}
+              className="w-full py-2 bg-gray-100 text-black rounded hover:bg-gray-200 transition"
             >
               {choice.text}
             </button>
           ))}
         </div>
-      )}
+      </div>
     </div>
   )
-}
-
+}  effects
